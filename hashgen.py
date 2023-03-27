@@ -1,21 +1,51 @@
-import argparse
+import sys
 import requests
-import hashlib
-from colorama import init, Fore, Style
+import mmh3
+import codecs
+import argparse
+from termcolor import colored
 
-# create an argument parser
-parser = argparse.ArgumentParser(description=f'{Fore.BLUE}{Style.BRIGHT}Favicon Hash Generator{Style.RESET_ALL} - by John Doe')
+# Define the script name in a stylish way
+SCRIPT_NAME = """
 
-# add the URL argument
-parser.add_argument('-u', '--url', type=str, required=True, help='The website URL')
+                                                                                                                                            
 
-# parse the command-line arguments
+ ██░ ██  ▄▄▄        ██████  ██░ ██   ▄████ ▓█████  ███▄    █    
+▓██░ ██▒▒████▄    ▒██    ▒ ▓██░ ██▒ ██▒ ▀█▒▓█   ▀  ██ ▀█   █    
+▒██▀▀██░▒██  ▀█▄  ░ ▓██▄   ▒██▀▀██░▒██░▄▄▄░▒███   ▓██  ▀█ ██▒   
+░▓█ ░██ ░██▄▄▄▄██   ▒   ██▒░▓█ ░██ ░▓█  ██▓▒▓█  ▄ ▓██▒  ▐▌██▒   
+░▓█▒░██▓ ▓█   ▓██▒▒██████▒▒░▓█▒░██▓░▒▓███▀▒░▒████▒▒██░   ▓██░   
+ ▒ ░░▒░▒ ▒▒   ▓▒█░▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒ ░▒   ▒ ░░ ▒░ ░░ ▒░   ▒ ▒    
+ ▒ ░▒░ ░  ▒   ▒▒ ░░ ░▒  ░ ░ ▒ ░▒░ ░  ░   ░  ░ ░  ░░ ░░   ░ ▒░   
+ ░  ░░ ░  ░   ▒   ░  ░  ░   ░  ░░ ░░ ░   ░    ░      ░   ░ ░    
+ ░  ░  ░      ░  ░      ░   ░  ░  ░      ░    ░  ░         ░    
+                                                                                                                                                                                                        
+ Author: Ahmed Habeeb @F4ct0r                                                                                                                                           
+                                                                                                                                            
+                                                                                                                                            
+"""
+
+# Print the script name
+colorName = colored(SCRIPT_NAME, 'green', attrs=['bold'])
+print(colorName)
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-u", "--url", help="URL to download favicon from")
 args = parser.parse_args()
 
-# make a request to the website to retrieve the favicon
-response = requests.get(args.url + '/favicon.ico')
-
-# calculate the md5 hash of the favicon content
-favicon_hash = hashlib.md5(response.content).hexdigest()
-
-print(f'{Fore.GREEN}Favicon hash:{Style.RESET_ALL} {favicon_hash}')
+if args.url:
+    try:
+        response = requests.get(args.url + '/favicon.ico')
+        response.raise_for_status()
+        favicon = response.content
+        hash_value = mmh3.hash(codecs.encode(favicon, "base64"))
+        result_text = f"Hash value of favicon from {args.url}: {hash_value}"
+        colored_text = colored(result_text, 'red', attrs=['bold'])
+        print(colored_text)
+    except requests.exceptions.RequestException:
+        error_text = "Error downloading favicon. Check your network connection."
+        colored_text = colored(error_text, 'red', attrs=['bold'])
+        print(colored_text)
+else:
+    print("No URL specified. Use -u or --url to specify a URL.")
