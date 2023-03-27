@@ -19,6 +19,7 @@ pip3 install -r requirements.txt
 ```
 python3 hashgen.py -u <DOMAIN>
 
+```
 Example: python3 hashgen [-h] [-u] https://www.hackerone.com
 
 --------------------------------------------------------------------------------
