@@ -11,7 +11,7 @@ Hashgenerator is a portable and modular python3 tool designed to quickly generat
 ###### You need python3, pip3, git.
 
 ```
-git clone https://github.com/guelfoweb/knock.git
+git clone https://github.com/BrainARD-hub/hashgenerator.git
 cd knock
 pip3 install -r requirements.txt
 
