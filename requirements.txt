@@ -1,3 +1,8 @@
 mmh3
 requests
 codecs
+requests
+mmh3
+codecs
+argparse
+termcolor
