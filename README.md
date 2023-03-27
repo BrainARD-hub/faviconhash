@@ -12,7 +12,7 @@ Hashgenerator is a portable and modular python3 tool designed to quickly generat
 
 ```
 git clone https://github.com/BrainARD-hub/hashgenerator.git
-cd knock
+cd hashgenerator
 pip3 install -r requirements.txt
 
 ```
@@ -31,13 +31,10 @@ python3 hashgen.py -u <DOMAIN>
 ### Knockpy ```-h```
 
 ```
-usage: knockpy [-h] [-v] [--no-local] [--no-remote] [--no-scan] [--no-http] 
-               [--no-http-code CODE [CODE ...]] [--dns DNS] [-w WORDLIST] 
-               [-o FOLDER] [-t SEC] [-th NUM] [--silent [{False,json,json-pretty,csv}]]
-               domain
+Example: python3 hashgen [-h] [-u] https://www.hackerone.com
 
 --------------------------------------------------------------------------------
 
 
 # License
-Knockpy is currently under development by [@guelfoweb](https://twitter.com/guelfoweb) and it's released under the GPL 3 license.
+Hashgenerator is currently under development by [@factor](https://www.linkedin.com/in/ahmedfactor/) and it's released under the GPL 3 license.
