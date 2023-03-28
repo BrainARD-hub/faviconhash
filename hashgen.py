@@ -32,20 +32,29 @@ print(colorName)
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-u", "--url", help="URL to download favicon from")
+parser.add_argument("-l", "--list", help="Path to a file containing a list of URLs")
 args = parser.parse_args()
 
-if args.url:
+def process_url(url):
     try:
-        response = requests.get(args.url + '/favicon.ico')
+        response = requests.get(url + '/favicon.ico')
         response.raise_for_status()
         favicon = response.content
         hash_value = mmh3.hash(codecs.encode(favicon, "base64"))
-        result_text = f"Hash value of favicon from {args.url}: {hash_value}"
-        colored_text = colored(result_text, 'red', attrs=['bold'])
+        result_text = f"Hash value of favicon from {url}: {hash_value}"
+        colored_text = colored(result_text, 'green', attrs=['bold'])
         print(colored_text)
     except requests.exceptions.RequestException:
-        error_text = "Error downloading favicon. Check your network connection."
+        error_text = f"Error downloading favicon from {url}. Check your network connection."
         colored_text = colored(error_text, 'red', attrs=['bold'])
         print(colored_text)
+
+if args.url:
+    process_url(args.url)
+elif args.list:
+    with open(args.list, 'r') as f:
+        urls = f.read().splitlines()
+        for url in urls:
+            process_url(url)
 else:
-    print("No URL specified. Use -u or --url to specify a URL.")
+    print("No URL specified. Use -u or --url to specify a URL or -l or --list to specify a file containing a list of URLs.")
