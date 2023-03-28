@@ -42,7 +42,7 @@ def process_url(url):
         favicon = response.content
         hash_value = mmh3.hash(codecs.encode(favicon, "base64"))
         result_text = f"Hash value of favicon from {url}: {hash_value}"
-        colored_text = colored(result_text, 'green', attrs=['bold'])
+        colored_text = colored(result_text, 'red', attrs=['bold'])
         print(colored_text)
     except requests.exceptions.RequestException:
         error_text = f"Error downloading favicon from {url}. Check your network connection."
