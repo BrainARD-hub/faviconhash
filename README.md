@@ -1,6 +1,6 @@
 # hashgenerator
 
-Hashgenerator is a portable and modular python3 tool designed to quickly generate the favicon hash of a target domain
+Hashgenerator is a portable and modular python3 tool designed to quickly generate the favicon hash of a target domain to be use on [@shodan](https://www.shodan.io/) or to gather more IPs of the target
 
 # Install
 
@@ -14,13 +14,20 @@ pip3 install -r requirements.txt
 ```
 # Usage
 
-#### As a command line uses
+#### As a command line for single url
 
 ```
 python3 hashgen.py -u <DOMAIN>
 
 ```
-Example: python3 hashgen [-h] [-u] https://www.hackerone.com
+#### As a command line for list of urls
+
+```
+python3 hashgen.py -l url.txt
+
+```
+Example: python3 hashgen [-h] [-u] [-l] 
+                         https://www.hackerone.com
 
 --------------------------------------------------------------------------------
 
