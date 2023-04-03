@@ -3,6 +3,7 @@ import requests
 import mmh3
 import codecs
 import argparse
+import subprocess
 from termcolor import colored
 
 # Define the script name in a stylish way
@@ -45,9 +46,20 @@ def process_url(url):
         colored_text = colored(result_text, 'red', attrs=['bold'])
         print(colored_text)
     except requests.exceptions.RequestException:
-        error_text = f"Error downloading favicon from {url}. Check your network connection."
-        colored_text = colored(error_text, 'red', attrs=['bold'])
+        error_text = f"Error downloading favicon from {url}. Trying with curl..."
+        colored_text = colored(error_text, 'yellow', attrs=['bold'])
         print(colored_text)
+        try:
+            output = subprocess.check_output(f"curl -s -l -k {url}/favicon.ico | python3 -c 'import mmh3,sys,codecs; print(mmh3.hash(codecs.encode(sys.stdin.buffer.read(),\"base64\")))'", shell=True)
+            hash_value = output.decode('utf-8').strip()
+            result_text = f"Hash value of favicon from {url}: {hash_value}"
+            colored_text = colored(result_text, 'red', attrs=['bold'])
+            print(colored_text)
+        except subprocess.CalledProcessError:
+            error_text = f"Error downloading favicon from {url} using curl. Check your network connection."
+            colored_text = colored(error_text, 'red', attrs=['bold'])
+            print(colored_text)
+            raise ValueError(error_text)
 
 if args.url:
     process_url(args.url)
@@ -57,4 +69,7 @@ elif args.list:
         for url in urls:
             process_url(url)
 else:
-    print("No URL specified. Use -u or --url to specify a URL or -l or --list to specify a file containing a list of URLs.")
+    error_text = "No URL specified. Use -u or --url to specify a URL or -l or --list to specify a file containing a list of URLs."
+    colored_text = colored(error_text, 'red', attrs=['bold'])
+    print(colored_text)
+    raise ValueError(error_text)
