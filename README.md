@@ -4,7 +4,7 @@ Faviconhash is a portable and modular python3 tool designed to quickly generate 
 
 # Install
 
-### Run from folder
+### Run from terminal
 
 ```
 git clone https://github.com/BrainARD-hub/faviconhash.git
