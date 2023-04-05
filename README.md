@@ -1,14 +1,14 @@
-# hashgenerator
+# faviconhash
 
-Hashgenerator is a portable and modular python3 tool designed to quickly generate the favicon hash of a target domain to be use on [shodan](https://www.shodan.io/) or to gather more IPs of the target
+Faviconhash is a portable and modular python3 tool designed to quickly generate the favicon hash of a target domain to be use on [shodan](https://www.shodan.io/) or [binaryedge](https://www.binaryedge.io/) to gather more assets of a target
 
 # Install
 
 ### Run from folder
 
 ```
-git clone https://github.com/BrainARD-hub/hashgenerator.git
-cd hashgenerator
+git clone https://github.com/BrainARD-hub/faviconhash.git
+cd faviconhash
 pip3 install -r requirements.txt
 
 ```
@@ -17,19 +17,19 @@ pip3 install -r requirements.txt
 #### As a command line for single url
 
 ```
-python3 hashgen.py -u <DOMAIN>
+python3 favi.py -u <DOMAIN>
 
 ```
 #### As a command line for list of urls
 
 ```
-python3 hashgen.py -l url.txt
+python3 favi.py -l url.txt
 
 ```
-Example: python3 hashgen [-h] [-u] [-l] domains
+Example: python3 favi.py [-h] [-u] [-l] domains
 
 --------------------------------------------------------------------------------
 
 
 # License
-Hashgenerator is currently under development by [@factor](https://www.linkedin.com/in/ahmedfactor/) and it's released under the GPL 3 license.
+Faviconhash is currently under development by [@factor](https://www.linkedin.com/in/ahmedfactor/) and it's released under the GPL 3 license.
