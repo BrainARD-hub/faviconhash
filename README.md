@@ -1,14 +1,14 @@
-# faviconhash
+# favihash
 
-Faviconhash is a portable and modular python3 tool designed to quickly generate the favicon hash of a target domain to be use on [shodan](https://www.shodan.io/) or [binaryedge](https://www.binaryedge.io/) to gather more assets of a target
+Favihash is a portable and modular python3 tool designed to quickly generate the favicon hash of a target domain to be use on [shodan](https://www.shodan.io/) or [binaryedge](https://www.binaryedge.io/) to gather more assets of a target
 
 # Install
 
 ### Run from terminal
 
 ```
-git clone https://github.com/BrainARD-hub/faviconhash.git
-cd faviconhash
+git clone https://github.com/BrainARD-hub/favihash.git
+cd favihash
 pip3 install -r requirements.txt
 
 ```
@@ -32,4 +32,4 @@ Example: python3 favi.py [-h] [-u] [-l] domains
 
 
 # License
-Faviconhash is currently under development by [@factor](https://www.linkedin.com/in/ahmedfactor/) and it's released under the GPL 3 license.
+Favihash is currently under development by [@factor](https://www.linkedin.com/in/ahmedfactor/) and it's released under the GPL 3 license.
